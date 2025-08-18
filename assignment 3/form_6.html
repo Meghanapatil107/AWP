@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration Form</title>
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            background-color: #7d6dd1;
+            border: 3px solid red;
+            padding: 20px;
+            width: 600px;
+            margin: auto;
+            color: white;
+        }
+        h2 {
+            text-align: center;
+            color: darkblue;
+        }
+        table {
+            width: 100%;
+            margin-top: 10px;
+        }
+        td {
+            padding: 5px;
+        }
+        .qualification-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #7d6dd1;
+            color: white;
+        }
+        .qualification-table td, .qualification-table th {
+            border: 1px solid white;
+            padding: 5px;
+            text-align: center;
+        }
+        input[type="text"], input[type="number"], input[type="email"], input[type="password"], textarea, select {
+            width: 80%;
+            padding: 5px;
+        }
+        .btn {
+            margin: 10px;
+            padding: 5px 15px;
+        }
+    </style>
+</head>
+<body>
+    <h2>STUDENT REGISTRATION FORM</h2>
+    <div class="form-container">
+        <form>
+            <table>
+                <tr>
+                    <td>First Name:</td>
+                    <td><input type="text" maxlength="30"><br> (max 30 characters)</td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td><input type="text" maxlength="30"> <br>(max 30 characters)</td>
+                </tr>
+                <tr>
+                    <td>Date of Birth:</td>
+                    <td>
+                        <select><option>Day</option></select>
+                        <select><option>Month</option></select>
+                        <select><option>Year</option></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email ID:</td>
+                    <td><input type="email"></td>
+                </tr>
+                <tr>
+                    <td>Mobile Number:</td>
+                    <td><input type="number" maxlength="10"> <br>(10 digit number)</td>
+                </tr>
+                <tr>
+                    <td>Gender:</td>
+                    <td>
+                        <input type="radio" name="gender"> Male
+                        <input type="radio" name="gender"> Female
+                    </td>
+                </tr>
+                <tr>
+                    <td>Address:</td>
+                    <td><textarea rows="3"></textarea></td>
+                </tr>
+                <tr>
+                    <td>City:</td>
+                    <td><input type="text" maxlength="30"><br> (max 30 characters)</td>
+                </tr>
+                <tr>
+                    <td>Pin Code:</td>
+                    <td><input type="number" maxlength="6"><br> (6 digit number)</td>
+                </tr>
+                <tr>
+                    <td>State:</td>
+                    <td><input type="text" maxlength="30"> <br>(max 30 characters)</td>
+                </tr>
+                <tr>
+                    <td>Country:</td>
+                    <td><input type="text" value="India"></td>
+                </tr>
+                <tr>
+                    <td>Hobbies:</td>
+                    <td>
+                        <input type="checkbox"> Drawing
+                        <input type="checkbox"> Singing
+                        <input type="checkbox"> Dancing
+                        <input type="checkbox"> Sketching
+                        <input type="checkbox"> Others <input type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Qualification:</td>
+                    <td>
+                        <table class="qualification-table">
+                            <tr>
+                                <th>Sl.No.</th>
+                                <th>Examination</th>
+                                <th>Board</th>
+                                <th>Percentage</th>
+                                <th>Year of Passing</th>
+                            </tr>
+                            <tr>
+                                <td>1</td><td>Class X</td>
+                                <td><input type="text" maxlength="10"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>2</td><td>Class XII</td>
+                                <td><input type="text" maxlength="10"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>3</td><td>Graduation</td>
+                                <td><input type="text" maxlength="10"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>4</td><td>Masters</td>
+                                <td><input type="text" maxlength="10"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Courses Applied For:</td>
+                    <td>
+                        <input type="radio" name="course"> BCA
+                        <input type="radio" name="course"> B.Com
+                        <input type="radio" name="course"> B.Sc
+                        <input type="radio" name="course"> B.A
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center;">
+                        <input type="submit" value="Submit" class="btn">
+                        <input type="reset" value="Reset" class="btn">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
+
