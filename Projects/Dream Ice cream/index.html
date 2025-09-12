@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Ice Cream Parlour - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ff6b9d;
+            --secondary-blue: #4ecdc4;
+            --accent-yellow: #ffd93d;
+            --cream-white: #fff8f0;
+            --chocolate-brown: #8b4513;
+            --gradient-1: linear-gradient(135deg, #ff6b9d, #ffd93d);
+            --gradient-2: linear-gradient(135deg, #4ecdc4, #44a08d);
+            --gradient-3: linear-gradient(135deg, #667eea, #764ba2);
+            --gradient-4: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .ice-cream-loader {
+            font-size: 5rem;
+            animation: bounce 1s infinite;
+            margin-bottom: 1rem;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.15);
+            padding: 0.5rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 2rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: #333 !important;
+            transition: all 0.3s ease;
+            position: relative;
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem !important;
+            border-radius: 25px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 50%;
+            background: var(--gradient-1);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 107, 157, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><pattern id="ice" patternUnits="userSpaceOnUse" width="40" height="40"><circle cx="20" cy="20" r="3" fill="rgba(255,255,255,0.2)"/></pattern></defs><rect width="200" height="200" fill="url(%23ice)"/></svg>');
+            animation: float-pattern 30s infinite linear;
+        }
+
+        @keyframes float-pattern {
+            0% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(0) translateX(20px); }
+            75% { transform: translateY(-10px) translateX(10px); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        .hero-content {
+            color: white;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideInDown 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        .btn-hero {
+            background: var(--gradient-2);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            animation: slideInUp 1s ease-out 0.6s both;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            color: white;
+            scale: 1.05;
+        }
+
+        .hero-ice-cream {
+            font-size: 12rem;
+            animation: float-ice-cream 4s ease-in-out infinite;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes float-ice-cream {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Featured Section */
+        .featured-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff8f0 100%);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-size: 3rem;
+            font-weight: bold;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-2);
+            border-radius: 2px;
+        }
+
+        /* Product Cards */
+        .product-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .product-image {
+            height: 280px;
+            background: var(--gradient-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3), transparent);
+            transform: scale(0);
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image::after {
+            transform: scale(1.5);
+        }
+
+        .product-info {
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.8rem;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-pink);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-product {
+            background: var(--gradient-3);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-product:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        /* Page Content Styles */
+        .page-content {
+            min-height: calc(100vh - 200px);
+            padding-top: 120px;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 60px 0 30px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-1);
+        }
+
+        .footer h5 {
+            color: var(--accent-yellow);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-pink);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-2);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .fade-in-left {
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        .fade-in-right {
+            animation: fadeInRight 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-ice-cream {
+                font-size: 8rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-ice-cream {
+                font-size: 6rem;
+            }
+            
+            .product-info {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Page transition effects */
+        .page-transition {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
+        }
+
+        .page-transition.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hover glow effect */
+        .glow-on-hover {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glow-on-hover::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient-1);
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .glow-on-hover:hover::before {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="ice-cream-loader">🍦</div>
+        <div class="loading-text">Loading Dream Ice Cream Parlour...</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="javascript:void(0)" onclick="loadPage('home')">
+                🍦 Dream Ice Cream Parlour
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="javascript:void(0)" onclick="loadPage('home')" id="nav-home">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)" onclick="loadPage('about')" id="nav-about">
+                            <i class="fas fa-info-circle me-1"></i>About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)" onclick="loadPage('products')" id="nav-products">
+                            <i class="fas fa-ice-cream me-1"></i>Ice Creams
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)" onclick="loadPage('contact')" id="nav-contact">
+                            <i class="fas fa-envelope me-1"></i>Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Home Page Content (Default) -->
+        <div id="page-home" class="page-content">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="hero-content fade-in-left">
+                                <h1>Welcome to Dream Ice Cream Parlour</h1>
+                                <p>Indulge in the sweetest dreams with our premium ice creams made with love and the finest ingredients from around the world.</p>
+                                <a href="javascript:void(0)" class="btn-hero glow-on-hover" onclick="loadPage('products')">
+                                    <i class="fas fa-shopping-cart me-2"></i>Order Now
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <div class="hero-ice-cream fade-in-right">🍦</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Ice Creams Section -->
+            <section class="featured-section">
+                <div class="container">
+                    <h2 class="section-title fade-in">Featured Ice Creams</h2>
+                    <div class="row" id="featured-products">
+                        <div class="col-lg-4 col-md-6 fade-in-up">
+                            <div class="product-card glow-on-hover">
+                                <div class="product-image" style="background: linear-gradient(135deg, #ff6b9d, #ff8a9b);">🍓</div>
+                                <div class="product-info">
+                                    <h3 class="product-title">Strawberry Dream</h3>
+                                    <p class="product-description">Fresh strawberry ice cream with real fruit chunks</p>
+                                    <div class="product-price">₹150</div>
+                                    <a href="javascript:void(0)" class="btn-product" onclick="viewProduct('Strawberry Dream', '₹150', '🍓', 'Fresh strawberry ice cream made with premium strawberries and rich cream')">
+                                        <i class="fas fa-eye me-2"></i>View Details
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 fade-in-up" style="animation-delay: 0.2s;">
+                            <div class="product-card glow-on-hover">
+                                <div class="product-image" style="background: linear-gradient(135deg, #8b4513, #a0522d);">🍫</div>
+                                <div class="product-info">
+                                    <h3 class="product-title">Chocolate Heaven</h3>
+                                    <p class="product-description">Rich Belgian chocolate with cocoa swirls</p>
+                                    <div class="product-price">₹180</div>
+                                    <a href="javascript:void(0)" class="btn-product" onclick="viewProduct('Chocolate Heaven', '₹180', '🍫', 'Decadent Belgian chocolate ice cream with rich cocoa swirls and chocolate chips')">
+                                        <i class="fas fa-eye me-2"></i>View Details
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 fade-in-up" style="animation-delay: 0.4s;">
+                            <div class="product-card glow-on-hover">
+                                <div class="product-image" style="background: linear-gradient(135deg, #ffa500, #ffb347);">🥭</div>
+                                <div class="product-info">
+                                    <h3 class="product-title">Mango Delight</h3>
+                                    <p class="product-description">Tropical mango ice cream with natural flavors</p>
+                                    <div class="product-price">₹160</div>
+                                    <a href="javascript:void(0)" class="btn-product" onclick="viewProduct('Mango Delight', '₹160', '🥭', 'Tropical mango ice cream made with ripe Alphonso mangoes and natural ingredients')">
+                                        <i class="fas fa-eye me-2"></i>View Details
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5><i class="fas fa-ice-cream me-2"></i>Dream Ice Cream Parlour</h5>
+                    <p class="mb-3">Creating sweet memories since 2010. We serve happiness in every scoop with our premium quality ice creams made from the finest ingredients.</p>
+                    <div class="social-icons">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="javascript:void(0)" onclick="loadPage('home')">Home</a></li>
+                        <li><a href="javascript:void(0)" onclick="loadPage('about')">About Us</a></li>
+                        <li><a href="javascript:void(0)" onclick="loadPage('products')">Ice Creams</a></li>
+                        <li><a href="javascript:void(0)" onclick="loadPage('contact')">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Contact Info</h5>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2"></i>123 Sweet Street, Ice Cream City</li>
+                        <li><i class="fas fa-phone me-2"></i>+91 98765 43210</li>
+                        <li><i class="fas fa-envelope me-2"></i>info@dreamicecream.com</li>
+                        <li><i class="fas fa-clock me-2"></i>Open: 10 AM - 11 PM Daily</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe for sweet deals and new flavors!</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button class="btn btn-outline-light" type="button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 opacity-25">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2025 Dream Ice Cream Parlour. All rights reserved. Made with ❤️ for ice cream lovers.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Global variables
+        let currentProduct = {};
+        let orderItems = [];
+        let orderTotal = 0;
+
+        // Page content templates
+        const pageTemplates = {
+            about: `
+                <div class="page-content">
+                    <section class="py-5" style="background: var(--gradient-3); color: white; min-height: 60vh;">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 fade-in-left">
+                                    <h1 class="display-4 mb-4">Our Sweet Story</h1>
+                                    <p class="lead mb-4">Since 2010, Dream Ice Cream Parlour has been serving happiness in every scoop. Our journey began with a simple dream - to create the most delicious, creamy, and memorable ice cream experiences.</p>
+                                    <p class="mb-4">We use only the finest ingredients sourced from local farms and premium suppliers worldwide. Each flavor is crafted with love, creativity, and a commitment to quality that has made us a favorite destination for ice cream lovers.</p>
+                                    <div class="row mt-5">
+                                        <div class="col-6 text-center">
+                                            <h3 class="display-6">50+</h3>
+                                            <p>Flavors Available</p>
+                                        </div>
+                                        <div class="col-6 text-center">
+                                            <h3 class="display-6">100K+</h3>
+                                            <p>Happy Customers</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 text-center fade-in-right">
+                                    <div style="font-size: 15rem; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));">🍦</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="py-5 bg-light">
+                        <div class="container">
+                            <h2 class="section-title">Our Mission & Values</h2>
+                            <div class="row">
+                                <div class="col-lg-4 mb-4 fade-in-up">
+                                    <div class="card border-0 shadow-lg h-100" style="border-radius: 20px;">
+                                        <div class="card-body text-center p-4">
+                                            <div class="mb-3" style="font-size: 4rem;">🎯</div>
+                                            <h4 class="card-title">Our Mission</h4>
+                                            <p class="card-text">To spread joy and create sweet memories through our artisanal ice creams, bringing families and friends together one scoop at a time.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 mb-4 fade-in-up" style="animation-delay: 0.2s;">
+                                    <div class="card border-0 shadow-lg h-100" style="border-radius: 20px;">
+                                        <div class="card-body text-center p-4">
+                                            <div class="mb-3" style="font-size: 4rem;">🌟</div>
+                                            <h4 class="card-title">Our Vision</h4>
+                                            <p class="card-text">To be the most loved ice cream brand, known for innovation, quality, and the magical experiences we create for our customers.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 mb-4 fade-in-up" style="animation-delay: 0.4s;">
+                                    <div class="card border-0 shadow-lg h-100" style="border-radius: 20px;">
+                                        <div class="card-body text-center p-4">
+                                            <div class="mb-3" style="font-size: 4rem;">💎</div>
+                                            <h4 class="card-title">Our Values</h4>
+                                            <p class="card-text">Quality ingredients, sustainable practices, community support, and creating moments of pure happiness for every customer.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="py-5">
+                        <div class="container">
+                            <h2 class="section-title">Meet Our Team</h2>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6 mb-4 fade-in-up">
+                                    <div class="card border-0 shadow-lg" style="border-radius: 20px;">
+                                        <div class="card-body text-center p-4">
+                                            <div class="mb-3" style="font-size: 5rem;">👨‍🍳</div>
+                                            <h5 class="card-title">Chef Marco</h5>
+                                            <p class="text-muted">Head Ice Cream Artisan</p>
+                                            <p class="card-text">15+ years of crafting perfect flavors</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 mb-4 fade-in-up" style="animation-delay: 0.1s;">
+                                    <div class="card border-0 shadow-lg" style="border-radius: 20px;">
+                                        <div class="card-body text-center p-4">
+                                            <div class="mb-3" style="font-size: 5rem;">👩‍💼</div>
+                                            <h5 class="card-title">Sarah Johnson</h5>
+                                            <p class="text-muted">Store Manager</p>
+                                            <p class="card-text">Creating amazing customer experiences</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 mb-4 fade-in-up" style="animation-delay: 0.2s;">
+                                    <div class="card border-0 shadow-lg" style="border-radius: 20px;">
+                                        <div class="card-body text-center p-4">
+                                            <div class="mb-3" style="font-size: 5rem;">👨‍🔬</div>
+                                            <h5 class="card-title">Dr. Alex</h5>
+                                            <p class="text-muted">Flavor Scientist</p>
+                                            <p class="card-text">Innovating new taste experiences</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 mb-4 fade-in-up" style="animation-delay: 0.3s;">
+                                    <div class="card border-0 shadow-lg" style="border-radius: 20px;">
+                                        <div class="card-body text-center p-4">
+                                            <div class="mb-3" style="font-size: 5rem;">👩‍🍳</div>
+                                            <h5 class="card-title">Emily Chen</h5>
+                                            <p class="text-muted">Quality Controller</p>
+                                            <p class="card-text">Ensuring every scoop is perfect</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            `,
+            
+            products: `
+                <div class="page-content">
+                    <section class="py-5 bg-light">
+                        <div class="container">
+                            <h1 class="section-title">All Ice Creams</h1>
+                            <p class="text-center mb-5 lead">Discover our complete collection of premium ice cream flavors</p>
+                            
+                            <div class="row mb-4">
+                                <div class="col-lg-6 mx-auto">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control-lg" placeholder="Search flavors..." id="searchInput" onkeyup="searchProducts()">
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" id="all-products">
+                                <div class="col-lg-3 col-md-6 mb-4 fade-in-up product-item" data-name="strawberry dream">
+                                    <div class="product-card glow-on-hover">
+                                        <div class="product-image" style="background: linear-gradient(135deg, #ff6b9d, #ff8a9b);">🍓</div>
+                                        <div class="product-info">
+                                            <h3 class="product-title">Strawberry Dream</h3>
+                                            <p class="product-description">Fresh strawberry ice cream with real fruit chunks</p>
+                                            <div class="product-price">₹150</div>
+                                            <a href="javascript:void(0)" class="btn-product" onclick="viewProduct('Strawberry Dream', '₹150', '🍓', 'Fresh strawberry ice cream made with premium strawberries and rich cream. Each scoop contains real fruit pieces for an authentic taste experience.')">
+                                                <i class="fas fa-eye me-2"></i>View Details
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-3 col-md-6 mb-4 fade-in-up product-item" data-name="chocolate heaven" style="animation-delay: 0.1s;">
+                                    <div class="product-card glow-on-hover">
+                                        <div class="product-image" style="background: linear-gradient(135deg, #8b4513, #a0522d);">🍫</div>
+                                        <div class="product-info">
+                                            <h3 class="product-title">Chocolate Heaven</h3>
+                                            <p class="product-description">Rich Belgian chocolate with cocoa swirls</p>
+                                            <div class="product-price">₹180</div>
+                                            <a href="javascript:void(0)" class="btn-product" onclick="viewProduct('Chocolate Heaven', '₹180', '🍫', 'Decadent Belgian chocolate ice cream with rich cocoa swirls and premium chocolate chips. A paradise for chocolate lovers.')">
+                                                <i class="fas fa-eye me-2"></i>View Details
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-3 col-md-6 mb-4 fade-in-up product-item" data-name="mango delight" style="animation-delay: 0.2s;">
+                                    <div class="product-card glow-on-hover">
+                                        <div class="product-image" style="background: linear-gradient(135deg, #ffa500, #ffb347);">🥭</div>
+                                        <div class="product-info">
+                                            <h3 class="product-title">Mango Delight</h3>
+                                            <p class="product-description">Tropical mango ice cream with natural flavors</p>
+                                            <div class="product-price">₹160</div>
+                                            <a href="javascript:void(0)" class="btn-product" onclick="viewProduct('Mango Delight', '₹160', '🥭', 'Tropical mango ice cream made with ripe Alphonso mangoes and natural ingredients. A taste of summer in every bite.')">
+                                                <i class="fas fa-eye me-2"></i>View Details
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-3 col-md-6 mb-4 fade-in-up product-item" data-name="vanilla classic" style="animation-delay: 0.3s;">
+                                    <div class="product-card glow-on-hover">
+                                        <div class="product-image" style="background: linear-gradient(135deg, #f5f5dc, #fff8dc);">🍦</div>
+                                        <div class="product-info">
+                                            <h3 class="product-title">Vanilla Classic</h3>
+                                            <p class="product-description">Pure vanilla bean ice cream, timeless flavor</p>
+                                            <div class="product-price">₹140</div>
+                                            <a href="javascript:void(0)" class="btn-product" onclick="viewProduct('Vanilla Classic', '₹140', '🍦', 'Classic vanilla ice cream made with real vanilla beans from Madagascar. Simple perfection in every scoop.')">
+                                                <i class="fas fa-eye me-2"></i>View Details
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-3 col-md-6 mb-4 fade-in-up product-item" data-name="mint fresh" style="animation-delay: 0.4s;">
+                                    <div class="product-card glow-on-hover">
+                                        <div class="product-image" style="background: linear-gradient(135deg, #98fb98, #90ee90);">🌿</div>
+                                        <div class="product-info">
+                                            <h3 class="product-title">Mint Fresh</h3>
+                                            <p class="product-description">Cool mint with chocolate chip surprises</p>
+                                            <div class="product-price">₹170</div>
+                                            <a href="javascript:void(0)" class="btn-product" onclick="viewProduct('Mint Fresh', '₹170', '🌿', 'Refreshing mint ice cream with natural mint leaves and dark chocolate chips. Cool and invigorating.')">
+                                                <i class="fas fa-eye me-2"></i>View Details
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-3 col-md-6 mb-4 fade-in-up product-item" data-name="cherry blast" style="animation-delay: 0.5s;">
+                                    <div class="product-card glow-on-hover">
+                                        <div class="product-image" style="background: linear-gradient(135deg, #dc143c, #ff1493);">🍒</div>
+                                        <div class="product-info">
+                                            <h3 class="product-title">Cherry Blast</h3>
+                                            <p class="product-description">Sweet cherries with vanilla cream swirls</p>
+                                            <div class="product-price">₹165</div>
+                                            <a href="javascript:void(0)" class="btn-product" onclick="viewProduct('Cherry Blast', '₹165', '🍒', 'Sweet cherry ice cream with fresh cherry pieces and vanilla cream swirls. A burst of fruity goodness.')">
+                                                <i class="fas fa-eye me-2"></i>View Details
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-3 col-md-6 mb-4 fade-in-up product-item" data-name="coconut paradise" style="animation-delay: 0.6s;">
+                                    <div class="product-card glow-on-hover">
+                                        <div class="product-image" style="background: linear-gradient(135deg, #f0f8ff, #e6f3ff);">🥥</div>
+                                        <div class="product-info">
+                                            <h3 class="product-title">Coconut Paradise</h3>
+                                            <p class="product-description">Creamy coconut with toasted coconut flakes</p>
+                                            <div class="product-price">₹155</div>
+                                            <a href="javascript:void(0)" class="btn-product" onclick="viewProduct('Coconut Paradise', '₹155', '🥥', 'Tropical coconut ice cream made with fresh coconut milk and toasted coconut flakes. Pure tropical bliss.')">
+                                                <i class="fas fa-eye me-2"></i>View Details
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-3 col-md-6 mb-4 fade-in-up product-item" data-name="banana split" style="animation-delay: 0.7s;">
+                                    <div class="product-card glow-on-hover">
+                                        <div class="product-image" style="background: linear-gradient(135deg, #ffff99, #ffffe0);">🍌</div>
+                                        <div class="product-info">
+                                            <h3 class="product-title">Banana Split</h3>
+                                            <p class="product-description">Banana ice cream with caramel ribbons</p>
+                                            <div class="product-price">₹175</div>
+                                            <a href="javascript:void(0)" class="btn-product" onclick="viewProduct('Banana Split', '₹175', '🍌', 'Creamy banana ice cream with caramel ribbons and crushed nuts. Like the classic dessert in ice cream form.')">
+                                                <i class="fas fa-eye me-2"></i>View Details
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            `,
+            
+            contact: `
+                <div class="page-content">
+                    <section class="py-5 bg-light">
+                        <div class="container">
+                            <h1 class="section-title">Contact Us</h1>
+                            <p class="text-center mb-5 lead">We'd love to hear from you! Get in touch for any questions or feedback.</p>
+                            
+                            <div class="row">
+                                <div class="col-lg-8 mx-auto">
+                                    <div class="card border-0 shadow-lg" style="border-radius: 20px;">
+                                        <div class="card-body p-5">
+                                            <form id="contact-form" class="fade-in-up">
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-4">
+                                                        <label for="contactName" class="form-label">Full Name *</label>
+                                                        <input type="text" class="form-control form-control-lg" id="contactName" required style="border-radius: 15px;">
+                                                    </div>
+                                                    <div class="col-md-6 mb-4">
+                                                        <label for="contactEmail" class="form-label">Email Address *</label>
+                                                        <input type="email" class="form-control form-control-lg" id="contactEmail" required style="border-radius: 15px;">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-4">
+                                                        <label for="contactPhone" class="form-label">Phone Number</label>
+                                                        <input type="tel" class="form-control form-control-lg" id="contactPhone" style="border-radius: 15px;">
+                                                    </div>
+                                                    <div class="col-md-6 mb-4">
+                                                        <label for="contactSubject" class="form-label">Subject *</label>
+                                                        <select class="form-control form-control-lg" id="contactSubject" required style="border-radius: 15px;">
+                                                            <option value="">Select Subject</option>
+                                                            <option value="general">General Inquiry</option>
+                                                            <option value="order">Order Related</option>
+                                                            <option value="feedback">Feedback</option>
+                                                            <option value="complaint">Complaint</option>
+                                                            <option value="suggestion">Suggestion</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-4">
+                                                    <label for="contactMessage" class="form-label">Message *</label>
+                                                    <textarea class="form-control form-control-lg" id="contactMessage" rows="5" required style="border-radius: 15px;" placeholder="Tell us how we can help you..."></textarea>
+                                                </div>
+                                                <div class="text-center">
+                                                    <button type="submit" class="btn btn-hero btn-lg px-5">
+                                                        <i class="fas fa-paper-plane me-2"></i>Send Message
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="py-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4 mb-4 fade-in-up">
+                                    <div class="card border-0 shadow-lg h-100 text-center" style="border-radius: 20px;">
+                                        <div class="card-body p-4">
+                                            <div class="mb-3" style="font-size: 3rem; color: var(--primary-pink);">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                            </div>
+                                            <h4>Visit Our Store</h4>
+                                            <p class="text-muted mb-3">123 Sweet Street, Ice Cream City<br>Mumbai, Maharashtra 400001</p>
+                                            <p class="text-muted">Open Daily: 10:00 AM - 11:00 PM</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-4 mb-4 fade-in-up" style="animation-delay: 0.2s;">
+                                    <div class="card border-0 shadow-lg h-100 text-center" style="border-radius: 20px;">
+                                        <div class="card-body p-4">
+                                            <div class="mb-3" style="font-size: 3rem; color: var(--secondary-blue);">
+                                                <i class="fas fa-phone"></i>
+                                            </div>
+                                            <h4>Call Us</h4>
+                                            <p class="text-muted mb-3">+91 98765 43210<br>+91 98765 43211</p>
+                                            <p class="text-muted">Available 24/7 for orders</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-4 mb-4 fade-in-up" style="animation-delay: 0.4s;">
+                                    <div class="card border-0 shadow-lg h-100 text-center" style="border-radius: 20px;">
+                                        <div class="card-body p-4">
+                                            <div class="mb-3" style="font-size: 3rem; color: var(--accent-yellow);">
+                                                <i class="fas fa-envelope"></i>
+                                            </div>
+                                            <h4>Email Us</h4>
+                                            <p class="text-muted mb-3">info@dreamicecream.com<br>orders@dreamicecream.com</p>
+                                            <p class="text-muted">We reply within 24 hours</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="py-5 bg-light">
+                        <div class="container">
+                            <h2 class="section-title">Find Us On Map</h2>
+                            <div class="row">
+                                <div class="col-12 fade-in-up">
+                                    <div class="card border-0 shadow-lg" style="border-radius: 20px; overflow: hidden;">
+                                        <div style="height: 400px; background: var(--gradient-2); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
+                                            <div class="text-center">
+                                                <i class="fas fa-map-marker-alt" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                                                <p>Google Maps Integration<br>123 Sweet Street, Ice Cream City</p>
+                                                <button class="btn btn-light btn-lg mt-3">
+                                                    <i class="fas fa-directions me-2"></i>Get Directions
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            `
+        };
+
+        // Initialize the website
+        document.addEventListener('DOMContentLoaded', function() {
+            // Loading screen
+            setTimeout(() => {
+                document.getElementById('loading-screen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loading-screen').style.display = 'none';
+                }, 800);
+            }, 2500);
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Initialize animations
+            initializeAnimations();
+        });
+
+        // Page loading function
+        function loadPage(pageName) {
+            // Update navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.getElementById('nav-' + pageName).classList.add('active');
+
+            // Load page content
+            const mainContent = document.getElementById('main-content');
+            
+            if (pageName === 'home') {
+                // Show home page content
+                document.getElementById('page-home').style.display = 'block';
+                // Hide other page templates if they exist
+                const otherPages = mainContent.querySelectorAll('.page-template');
+                otherPages.forEach(page => page.remove());
+            } else {
+                // Hide home page
+                document.getElementById('page-home').style.display = 'none';
+                
+                // Remove existing templates
+                const existingTemplates = mainContent.querySelectorAll('.page-template');
+                existingTemplates.forEach(template => template.remove());
+                
+                // Add new page content
+                const pageDiv = document.createElement('div');
+                pageDiv.className = 'page-template page-transition';
+                pageDiv.innerHTML = pageTemplates[pageName];
+                mainContent.appendChild(pageDiv);
+                
+                // Trigger animation
+                setTimeout(() => {
+                    pageDiv.classList.add('active');
+                }, 50);
+
+                // Initialize page-specific functionality
+                if (pageName === 'contact') {
+                    initializeContactForm();
+                } else if (pageName === 'products') {
+                    initializeProductSearch();
+                }
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Re-initialize animations
+            setTimeout(() => {
+                initializeAnimations();
+            }, 100);
+        }
+
+        // Product view function
+        function viewProduct(name, price, emoji, description) {
+            currentProduct = { name, price, emoji, description };
+            
+            // Create product details modal
+            const modal = `
+                <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content" style="border-radius: 20px; overflow: hidden;">
+                            <div class="modal-header" style="background: var(--gradient-1); color: white; border: none;">
+                                <h5 class="modal-title" id="productModalLabel">
+                                    <i class="fas fa-ice-cream me-2"></i>Product Details
+                                </h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body p-4">
+                                <div class="row align-items-center">
+                                    <div class="col-md-6 text-center">
+                                        <div style="font-size: 8rem; margin: 2rem 0; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));">
+                                            ${emoji}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h2 class="mb-3" style="color: var(--primary-pink);">${name}</h2>
+                                        <h3 class="mb-4" style="color: var(--secondary-blue);">${price}</h3>
+                                        <p class="lead mb-4">${description}</p>
+                                        
+                                        <div class="mb-4">
+                                            <h6 class="fw-bold">Ingredients:</h6>
+                                            <p class="small text-muted">Premium dairy cream, natural flavors, sugar, stabilizers, and our secret blend of happiness!</p>
+                                        </div>
+                                        
+                                        <div class="mb-4">
+                                            <h6 class="fw-bold">Nutritional Info:</h6>
+                                            <small class="text-muted">Rich in calcium, protein, and joy. Made with love and premium ingredients.</small>
+                                        </div>
+                                        
+                                        <div class="d-grid gap-2">
+                                            <button class="btn btn-hero btn-lg" onclick="buyNow()">
+                                                <i class="fas fa-shopping-cart me-2"></i>Buy Now
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Remove existing modal
+            const existingModal = document.getElementById('productModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+            
+            // Add modal to body
+            document.body.insertAdjacentHTML('beforeend', modal);
+            
+            // Show modal
+            const productModal = new bootstrap.Modal(document.getElementById('productModal'));
+            productModal.show();
+        }
+
+        // Buy now function
+        function buyNow() {
+            // Hide product modal
+            const productModal = bootstrap.Modal.getInstance(document.getElementById('productModal'));
+            if (productModal) {
+                productModal.hide();
+            }
+            
+            setTimeout(() => {
+                showPaymentModal();
+            }, 300);
+        }
+
+        // Payment modal function
+        function showPaymentModal() {
+            const paymentModal = `
+                <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content" style="border-radius: 20px; overflow: hidden;">
+                            <div class="modal-header" style="background: var(--gradient-2); color: white; border: none;">
+                                <h5 class="modal-title" id="paymentModalLabel">
+                                    <i class="fas fa-credit-card me-2"></i>Payment & Delivery
+                                </h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body p-4">
+                                <form id="payment-form">
+                                    <div class="row mb-4">
+                                        <div class="col-md-6">
+                                            <h6 class="fw-bold mb-3">Order Summary</h6>
+                                            <div class="card bg-light" style="border-radius: 15px;">
+                                                <div class="card-body">
+                                                    <div class="d-flex align-items-center">
+                                                        <div style="font-size: 2rem; margin-right: 1rem;">${currentProduct.emoji}</div>
+                                                        <div>
+                                                            <h6 class="mb-1">${currentProduct.name}</h6>
+                                                            <p class="text-muted small mb-0">Quantity: 1</p>
+                                                        </div>
+                                                        <div class="ms-auto">
+                                                            <strong>${currentProduct.price}</strong>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>Delivery Charges:</span>
+                                                        <span class="text-success">FREE</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between fw-bold">
+                                                        <span>Total:</span>
+                                                        <span style="color: var(--primary-pink);">${currentProduct.price}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h6 class="fw-bold mb-3">Customer Details</h6>
+                                            <div class="mb-3">
+                                                <label class="form-label">Full Name *</label>
+                                                <input type="text" class="form-control" required style="border-radius: 10px;">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Phone Number *</label>
+                                                <input type="tel" class="form-control" required style="border-radius: 10px;">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Email Address *</label>
+                                                <input type="email" class="form-control" required style="border-radius: 10px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <h6 class="fw-bold mb-3">Delivery Address</h6>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Street Address *</label>
+                                                <input type="text" class="form-control" required style="border-radius: 10px;">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">City *</label>
+                                                <input type="text" class="form-control" required style="border-radius: 10px;">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">State *</label>
+                                                <input type="text" class="form-control" required style="border-radius: 10px;">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">PIN Code *</label>
+                                                <input type="text" class="form-control" required style="border-radius: 10px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <h6 class="fw-bold mb-3">Payment Method</h6>
+                                        <div class="row">
+                                            <div class="col-md-3 mb-2">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="paymentMethod" id="card" value="card" checked>
+                                                    <label class="form-check-label" for="card">
+                                                        <i class="fas fa-credit-card me-1"></i> Card
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-2">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="paymentMethod" id="upi" value="upi">
+                                                    <label class="form-check-label" for="upi">
+                                                        <i class="fas fa-mobile-alt me-1"></i> UPI
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-2">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="paymentMethod" id="netbanking" value="netbanking">
+                                                    <label class="form-check-label" for="netbanking">
+                                                        <i class="fas fa-university me-1"></i> Net Banking
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-2">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="paymentMethod" id="wallet" value="wallet">
+                                                    <label class="form-check-label" for="wallet">
+                                                        <i class="fas fa-wallet me-1"></i> Wallet
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-hero btn-lg px-5">
+                                            <i class="fas fa-lock me-2"></i>Complete Payment
+                                        </button>
+                                        <p class="small text-muted mt-2">
+                                            <i class="fas fa-shield-alt me-1"></i>
+                                            Your payment information is secure and encrypted
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Remove existing modal
+            const existingModal = document.getElementById('paymentModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+            
+            // Add modal to body
+            document.body.insertAdjacentHTML('beforeend', paymentModal);
+            
+            // Initialize payment form
+            initializePaymentForm();
+            
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('paymentModal'));
+            modal.show();
+        }
+
+        // Initialize payment form
+        function initializePaymentForm() {
+            const form = document.getElementById('payment-form');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                // Show processing state
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing Payment...';
+                submitBtn.disabled = true;
+                
+                // Simulate payment processing
+                setTimeout(() => {
+                    // Hide payment modal
+                    const paymentModal = bootstrap.Modal.getInstance(document.getElementById('paymentModal'));
+                    paymentModal.hide();
+                    
+                    setTimeout(() => {
+                        showOrderConfirmation();
+                    }, 300);
+                }, 2000);
+            });
+        }
+
+        // Order confirmation function
+        function showOrderConfirmation() {
+            const orderId = 'ICE' + Math.floor(Math.random() * 10000 + 1000);
+            
+            const confirmationModal = `
+                <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content" style="border-radius: 20px; overflow: hidden;">
+                            <div class="modal-body p-5 text-center position-relative">
+                                <div id="confetti-container" class="position-absolute top-0 start-0 w-100 h-100" style="pointer-events: none; z-index: 1000;"></div>
+                                
+                                <div style="font-size: 6rem; margin-bottom: 2rem; animation: bounce 2s infinite;">🎉</div>
+                                <h2 class="mb-4" style="color: var(--primary-pink);">Order Confirmed!</h2>
+                                <div style="font-size: 4rem; margin: 2rem 0;">${currentProduct.emoji}</div>
+                                
+                                <div class="alert alert-success" style="border-radius: 15px;">
+                                    <h5 class="alert-heading">Thank you for your order!</h5>
+                                    <p class="mb-2">Your delicious <strong>${currentProduct.name}</strong> will be delivered within 30-45 minutes.</p>
+                                    <hr>
+                                    <p class="mb-0">
+                                        <strong>Order ID:</strong> ${orderId}<br>
+                                        <strong>Total Amount:</strong> ${currentProduct.price}
+                                    </p>
+                                </div>
+                                
+                                <div class="row mt-4">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card bg-light" style="border-radius: 15px;">
+                                            <div class="card-body">
+                                                <h6 class="card-title"><i class="fas fa-truck me-2"></i>Delivery Status</h6>
+                                                <p class="card-text small mb-0">Your order is being prepared with love!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card bg-light" style="border-radius: 15px;">
+                                            <div class="card-body">
+                                                <h6 class="card-title"><i class="fas fa-clock me-2"></i>Estimated Time</h6>
+                                                <p class="card-text small mb-0">30-45 minutes</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <button class="btn btn-hero btn-lg me-3" onclick="trackOrder('${orderId}')">
+                                        <i class="fas fa-search-location me-2"></i>Track Order
+                                    </button>
+                                    <button class="btn btn-outline-primary btn-lg" onclick="orderMore()">
+                                        <i class="fas fa-plus me-2"></i>Order More
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Remove existing modal
+            const existingModal = document.getElementById('confirmationModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+            
+            // Add modal to body
+            document.body.insertAdjacentHTML('beforeend', confirmationModal);
+            
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+            modal.show();
+            
+            // Start confetti animation
+            createConfetti();
+        }
+
+        // Confetti animation
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            if (!container) return;
+            
+            const colors = ['#ff6b9d', '#4ecdc4', '#ffd93d', '#667eea', '#f093fb'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'absolute';
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear infinite`;
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                
+                container.appendChild(confetti);
+            }
+            
+            // Add fall animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall {
+                    to {
+                        transform: translateY(400px) rotate(360deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Clean up confetti after 5 seconds
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 5000);
+        }
+
+        // Track order function
+        function trackOrder(orderId) {
+            alert(`Tracking Order: ${orderId}\n\nStatus: Your ice cream is being prepared with extra love! 🍦\nEstimated delivery: 25-30 minutes remaining.`);
+        }
+
+        // Order more function
+        function orderMore() {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('confirmationModal'));
+            if (modal) {
+                modal.hide();
+            }
+            loadPage('products');
+        }
+
+        // Search products function
+        function searchProducts() {
+            const searchInput = document.getElementById('searchInput');
+            if (!searchInput) return;
+            
+            const searchTerm = searchInput.value.toLowerCase();
+            const productItems = document.querySelectorAll('.product-item');
+            
+            productItems.forEach(item => {
+                const productName = item.getAttribute('data-name');
+                if (productName.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    item.style.animation = 'fadeIn 0.5s ease-out';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Initialize product search
+        function initializeProductSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', searchProducts);
+            }
+        }
+
+        // Initialize contact form
+        function initializeContactForm() {
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const submitBtn = contactForm.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    // Show sending state
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending Message...';
+                    submitBtn.disabled = true;
+                    
+                    // Simulate form submission
+                    setTimeout(() => {
+                        submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Message Sent!';
+                        submitBtn.classList.remove('btn-hero');
+                        submitBtn.classList.add('btn-success');
+                        
+                        // Show success message
+                        const successAlert = `
+                            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert" style="border-radius: 15px;">
+                                <i class="fas fa-check-circle me-2"></i>
+                                <strong>Thank you!</strong> Your message has been sent successfully. We'll get back to you within 24 hours.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        `;
+                        contactForm.insertAdjacentHTML('afterend', successAlert);
+                        
+                        // Reset form after 2 seconds
+                        setTimeout(() => {
+                            contactForm.reset();
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.classList.remove('btn-success');
+                            submitBtn.classList.add('btn-hero');
+                            submitBtn.disabled = false;
+                        }, 3000);
+                    }, 2000);
+                });
+            }
+        }
+
+        // Initialize animations
+        function initializeAnimations() {
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        if (element.classList.contains('fade-in-up')) {
+                            element.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                        } else if (element.classList.contains('fade-in-left')) {
+                            element.style.animation = 'fadeInLeft 0.8s ease-out forwards';
+                        } else if (element.classList.contains('fade-in-right')) {
+                            element.style.animation = 'fadeInRight 0.8s ease-out forwards';
+                        } else if (element.classList.contains('fade-in')) {
+                            element.style.animation = 'fadeIn 0.8s ease-out forwards';
+                        }
+                        element.style.opacity = '1';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all animatable elements
+            const animatableElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .fade-in');
+            animatableElements.forEach(el => {
+                el.style.opacity = '0';
+                observer.observe(el);
+            });
+        }
+
+        // Smooth scrolling for internal links
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('a[href^="#"]')) {
+                e.preventDefault();
+                const target = document.querySelector(e.target.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+
+        // Add floating ice cream animations
+        function createFloatingIceCreams() {
+            const container = document.body;
+            const iceCreams = ['🍦', '🍧', '🍨', '🧁', '🍓', '🍫', '🥭'];
+            
+            setInterval(() => {
+                if (Math.random() > 0.7) { // 30% chance
+                    const iceCream = document.createElement('div');
+                    iceCream.textContent = iceCreams[Math.floor(Math.random() * iceCreams.length)];
+                    iceCream.style.position = 'fixed';
+                    iceCream.style.fontSize = '2rem';
+                    iceCream.style.left = Math.random() * window.innerWidth + 'px';
+                    iceCream.style.top = window.innerHeight + 'px';
+                    iceCream.style.zIndex = '1';
+                    iceCream.style.pointerEvents = 'none';
+                    iceCream.style.opacity = '0.3';
+                    iceCream.style.animation = 'float-up 8s linear forwards';
+                    
+                    container.appendChild(iceCream);
+                    
+                    setTimeout(() => {
+                        if (iceCream.parentNode) {
+                            iceCream.remove();
+                        }
+                    }, 8000);
+                }
+            }, 4000);
+        }
+
+        // Add float-up animation
+        const floatUpStyle = document.createElement('style');
+        floatUpStyle.textContent = `
+            @keyframes float-up {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 0.3;
+                }
+                100% {
+                    transform: translateY(-${window.innerHeight + 100}px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(floatUpStyle);
+
+        // Start floating animations after page load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                createFloatingIceCreams();
+            }, 3000);
+        });
+
+        // Add mobile menu close functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('nav-link')) {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                if (bsCollapse) {
+                    bsCollapse.hide();
+                }
+            }
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // Close any open modals
+                const openModals = document.querySelectorAll('.modal.show');
+                openModals.forEach(modal => {
+                    const bsModal = bootstrap.Modal.getInstance(modal);
+                    if (bsModal) {
+                        bsModal.hide();
+                    }
+                });
+            }
+        });
+
+        // Newsletter subscription
+        document.querySelector('.input-group button').addEventListener('click', function() {
+            const emailInput = this.previousElementSibling;
+            if (emailInput.value && emailInput.checkValidity()) {
+                this.innerHTML = '<i class="fas fa-check"></i>';
+                this.classList.add('btn-success');
+                emailInput.value = '';
+                
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-paper-plane"></i>';
+                    this.classList.remove('btn-success');
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
