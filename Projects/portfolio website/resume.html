@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Meghana Patil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1c1c1c 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #667eea;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 3rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .resume-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .resume-preview {
+            width: 100%;
+            max-width: 600px;
+            height: 800px;
+            background: white;
+            border-radius: 15px;
+            margin: 0 auto 2rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #667eea;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .resume-preview:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .resume-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .resume-preview:hover::before {
+            left: 100%;
+        }
+
+        .resume-icon {
+            animation: bounce 2s infinite;
+            margin-bottom: 1rem;
+        }
+
+        .resume-text {
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .resume-placeholder {
+            position: absolute;
+            inset: 2rem;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            text-align: left;
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .placeholder-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .placeholder-avatar {
+            width: 80px;
+            height: 80px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .placeholder-info h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .placeholder-contact {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .placeholder-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .placeholder-section h4 {
+            color: #667eea;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .placeholder-content {
+            color: #555;
+            font-size: 0.8rem;
+            line-height: 1.3;
+        }
+
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #764ba2, #667eea);
+        }
+
+        .download-button:active {
+            transform: translateY(-1px);
+        }
+
+        .resume-note {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            margin-top: 1.5rem;
+            font-style: italic;
+        }
+
+        /* Additional Info Section */
+        .resume-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .info-text {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .info-label {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 2rem;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .page-title {
+                font-size: 2.2rem;
+            }
+
+            .main-container {
+                padding: 2rem 1rem;
+            }
+
+            .resume-container {
+                padding: 2rem;
+            }
+
+            .resume-preview {
+                height: 600px;
+                font-size: 3rem;
+            }
+
+            .resume-placeholder {
+                inset: 1rem;
+                padding: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .placeholder-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .placeholder-avatar {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .resume-preview {
+                height: 500px;
+                font-size: 2rem;
+            }
+
+            .download-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .placeholder-header h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo"> Meghana Patil</div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="education.html" class="nav-link">Education</a></li>
+                <li><a href="project.html" class="nav-link">Projects</a></li>
+                <li><a href="certificates.html" class="nav-link">Certificates</a></li>
+                <li><a href="skills.html" class="nav-link">Skills</a></li>
+                <li><a href="resume.html" class="nav-link">Resume</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <h1 class="page-title">Resume</h1>
+        
+        <div class="resume-container">
+            <div class="resume-preview">
+                <!-- Resume Placeholder Content -->
+                <div class="resume-placeholder">
+                    <div class="placeholder-header">
+                        <div class="placeholder-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="placeholder-info">
+                            <h3> Meghana Patil</h3>
+                            <div class="placeholder-contact">
+                                BTech CSE Student | Pimpri Chinchwad University<br>
+                                📧 meghanapatil107@gmail.com| 📱9370761200
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="placeholder-section">
+                        <h4>Education</h4>
+                        <div class="placeholder-content">
+                            • BTech CSE - Pimpri Chinchwad University (CGPA: 7.2)<br>
+                            • HSC - Sou. Tarabai Shankarlal Mutha Kanya Prashala And Junior College (75%)<br>
+                            • SSC - V.K.Mate HighSchool (85%)
+                        </div>
+                    </div>
+
+                    <div class="placeholder-section">
+                        <h4>Technical Skills</h4>
+                        <div class="placeholder-content">
+                            Languages: C, C++, Python, Core Java<br>
+                            Web: HTML, CSS, JavaScript<br>
+                            Database: MySQL | Tools: GitHub, Excel
+                        </div>
+                    </div>
+
+                    <div class="placeholder-section">
+                        <h4>Projects</h4>
+                        <div class="placeholder-content">
+                            • Student Management System (Python + MySQL)<br>
+                            • E-Commerce Website (HTML, CSS, JS) - In Progress
+                        </div>
+                    </div>
+
+                    <div class="placeholder-section">
+                        <h4>Certifications</h4>
+                        <div class="placeholder-content">
+                            Python Programming | DBMS | Java | Web Development
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="download-button" onclick="downloadResume()">
+                <i class="fas fa-download"></i>
+                Download Resume
+            </a>
+
+            <p class="resume-note">
+                Click the button above to download the complete resume in PDF format.
+            </p>
+
+            <!-- Additional Information -->
+            <div class="resume-info">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="info-text">
+                            <div class="info-label">Current Status</div>
+                            Third Year BTech CSE Student
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-target"></i>
+                        </div>
+                        <div class="info-text">
+                            <div class="info-label">Goal</div>
+                            GATE 2026 Preparation
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="info-text">
+                            <div class="info-label">Interests</div>
+                            Cybersecurity & Web Development
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-text">
+                            <div class="info-label">Location</div>
+                            Sate, Maval, Maharashtra
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Meghana Patil | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Download Resume Function
+        function downloadResume() {
+            // Create a temporary notification
+            const button = document.querySelector('.download-button');
+            const originalText = button.innerHTML;
+            
+            button.innerHTML = '<i class="fas fa-check"></i> Download Ready!';
+            button.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+                
+                // Show alert for now (replace with actual download logic)
+                alert('Resume download will be available soon! Please contact via email for the latest version.');
+            }, 2000);
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Resume preview hover effect
+        const resumePreview = document.querySelector('.resume-preview');
+        resumePreview.addEventListener('mouseenter', () => {
+            resumePreview.style.cursor = 'pointer';
+        });
+
+        resumePreview.addEventListener('click', () => {
+            // Add click animation
+            resumePreview.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                resumePreview.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    resumePreview.style.transform = 'scale(1)';
+                }, 150);
+            }, 150);
+        });
+    </script>
+</body>
+</html>

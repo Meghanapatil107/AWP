@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meghana Patil - About</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Meghana Patil</h2>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="education.html" class="nav-link">Education</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="certificates.html" class="nav-link">Certificates</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="resume.html" class="nav-link">Resume</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Animated Background Icons -->
+    <div class="bg-icons">
+        <i class="fas fa-code"></i>
+        <i class="fas fa-laptop-code"></i>
+        <i class="fas fa-shield-alt"></i>
+        <i class="fas fa-database"></i>
+        <i class="fas fa-terminal"></i>
+        <i class="fas fa-bug"></i>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="about-section">
+                <div class="section-header slide-in-left">
+                    <h1>About Me</h1>
+                    <div class="underline"></div>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-text slide-in-right">
+                        <div class="bio-card">
+                            <p class="highlight-intro">Hello! I'm Meghana Patil</p>
+                            <p>I am a third-year BTech CSE student at Pimpri Chinchwad University. My interests lie in coding, security (VPN, Tor), web development, and preparing for GATE 2026. I enjoy exploring technology in depth, staying organized, and working on long-term learning goals.</p>
+                        </div>
+                        
+                        <div class="interests-grid">
+                            <div class="interest-card hover-glow">
+                                <i class="fas fa-code"></i>
+                                <h3>Coding</h3>
+                                <p>Passionate about programming in C, C++, Python, and Java</p>
+                            </div>
+                            
+                            <div class="interest-card hover-glow">
+                                <i class="fas fa-shield-alt"></i>
+                                <h3>Cybersecurity</h3>
+                                <p>Exploring VPN, Tor, and digital privacy technologies</p>
+                            </div>
+                            
+                            <div class="interest-card hover-glow">
+                                <i class="fas fa-globe"></i>
+                                <h3>Web Development</h3>
+                                <p>Building modern, responsive websites and applications</p>
+                            </div>
+                            
+                            <div class="interest-card hover-glow">
+                                <i class="fas fa-graduation-cap"></i>
+                                <h3>GATE 2026</h3>
+                                <p>Preparing for Graduate Aptitude Test in Engineering</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Meghana Patil | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1c1c1c 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-logo h2 {
+            color: #4A90E2;
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #4A90E2;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #4A90E2;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background: #4A90E2;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Background Icons Animation */
+        .bg-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-icons i {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite alternate;
+        }
+
+        .bg-icons i:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .bg-icons i:nth-child(2) {
+            top: 60%;
+            left: 80%;
+            animation-delay: 1s;
+        }
+
+        .bg-icons i:nth-child(3) {
+            top: 80%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        .bg-icons i:nth-child(4) {
+            top: 30%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        .bg-icons i:nth-child(5) {
+            top: 70%;
+            left: 50%;
+            animation-delay: 4s;
+        }
+
+        .bg-icons i:nth-child(6) {
+            top: 10%;
+            left: 60%;
+            animation-delay: 5s;
+        }
+
+        @keyframes float {
+            to {
+                transform: translateY(-30px) rotate(360deg);
+            }
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            min-height: calc(100vh - 140px);
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-section {
+            color: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #e6f2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .underline {
+            width: 100px;
+            height: 4px;
+            background: #4A90E2;
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-text {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .bio-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .highlight-intro {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #4A90E2;
+            margin-bottom: 1.5rem;
+        }
+
+        .bio-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #f0f8ff;
+        }
+
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .interest-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .interest-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .interest-card i {
+            font-size: 3rem;
+            color: #4A90E2;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .interest-card:hover i {
+            transform: scale(1.1);
+            color: #ffffff;
+        }
+
+        .interest-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .interest-card p {
+            color: #e6f2ff;
+            line-height: 1.6;
+        }
+
+        .hover-glow {
+            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.2);
+        }
+
+        .hover-glow:hover {
+            box-shadow: 0 15px 40px rgba(74, 144, 226, 0.4);
+        }
+
+        /* Animations */
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slideInRight 0.8s ease 0.3s forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.95);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .section-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .bio-card {
+                padding: 2rem;
+            }
+
+            .interests-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add hover effect to interest cards
+        document.querySelectorAll('.interest-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 20px 50px rgba(74, 144, 226, 0.5)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '0 8px 25px rgba(74, 144, 226, 0.2)';
+            });
+        });
+    </script>
+</body>
+</html>
